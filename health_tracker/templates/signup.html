@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="col-md-4 col-md-offset-4">
+  <h3 class="text-center">Sign Up!</h3>
+  <form action="/signup" method="post">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input class="form-control" type="text" id="name" name="user_name" />
+    </div>
+    <div class="form-group">
+        <label for="pass">Password:</label>
+        <input class="form-control" type="password" id="pass" name="user_pass" />
+    </div>
+    <div class="form-group">
+        <label for="pass_confirm">Retype Password:</label>
+        <input class="form-control" type="password" id="pass_confirm" name="user_pass_confirm" />
+    </div>
+    <div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+   </form>
+</div>
+{% endblock %}

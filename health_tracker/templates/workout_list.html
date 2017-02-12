@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="list-group col-md-6 col-md-offset-3">
+    {% for workout in workouts: %}
+      <a class="list-group-item" href="{{ url_for('workout', workout_id=workout.id) }}">
+      <h3 class="list-group-item-heading">Workout: {{ workout.workout }}</h3>
+      <p class="date list-group-item-text">Date: {{ workout.date.strftime("%A %b. %d, %Y") }}</p>
+      </a>
+    {% endfor %}
+</div>
+{% endblock %}

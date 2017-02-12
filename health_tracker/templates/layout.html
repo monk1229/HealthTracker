@@ -1,0 +1,52 @@
+<!doctype html>
+<title>HealthTracker</title>
+{% include 'global/_header.html' %}
+<style>
+    .date, .notes {
+      padding-left: 20px;
+    }
+    .graph {padding-bottom: 30px;}
+</style>
+<div class=page>
+  <div class=metanav>
+  
+  </div>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+      <a class="navbar-brand" href="{{ url_for('home_page') }}">HealthTracker</a>
+    </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+        {% if "user_name" in session %}
+            <a href="{{ url_for('new_weight') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Weight</a>
+        {% endif %}
+        </li>
+        <li>
+        {% if "user_name" in session %}
+            <a href="{{ url_for('new_workout') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Workout</a>
+        {% endif %}
+        </li>
+        <li>
+        {% if "user_name" not in session %}
+            <a href="{{ url_for('signup') }}">Sign Up</a>
+        {% endif %}
+        </li>
+        <li>
+        {% if "user_name" not in session %}
+            <a href="{{ url_for('login') }}">Log In</a>
+        {% else %}
+            <a href="{{ url_for('logout') }}">Log Out</a>
+        {% endif %}
+        </li>
+      </ul>
+  </div><!-- /.container-fluid -->
+</nav>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  {% block body %}{% endblock %}
+</div>

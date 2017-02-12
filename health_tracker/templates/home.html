@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="col-md-6 col-md-offset-3">
+  <h1>Welcome Back {{ session['user_name'] }}!</h1>
+  {% if last_weight != False %}
+  <h1>Last Weight: {{ last_weight.weight|round(2) }}lbs</h1>
+  {% endif %}
+  <div class="list-group">
+    {% for workout in workouts: %}
+      <a class="list-group-item" href="{{ url_for('workout', workout_id=workout.id) }}">
+      <h3 class="list-group-item-heading">Workout: {{ workout.workout }}</h3>
+      <p class="date list-group-item-text">Date: {{ workout.date.strftime("%A %b. %d, %Y") }}</p>
+      </a>
+    {% endfor %}
+   </div>
+   <div>
+   <p><a href="{{ url_for('weights') }}">See more weights</a></p>
+   <p><a href="{{ url_for('workouts') }}">See more workouts</a></p>
+   </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="col-md-10 col-md-offset-1 graph">
+<canvas id="chart" width="600" height="150"></canvas>
+</div>
+<script>
+    var data = {
+        datasets: [{
+            label: 'Weight Over Time',
+            data: {{ final_weights|tojson }},
+            backgroundColor: 'rgba(61,255,74,0.4)'
+        }]
+    };
+    var ctx=document.getElementById("chart");
+    var scatterChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                xAxes: [{
+                    type: 'time'
+
+                }]
+            }
+        }
+    });
+</script>
+
+<div class="list-group col-md-6 col-md-offset-3">
+    {% for weight in weights: %}
+      <a class="list-group-item">
+      <h3 class="list-group-item-heading">Weight: {{ weight.weight|round(2) }}lbs</h3>
+      <p class="date list-group-item-text">Date: {{ weight.date.strftime("%A %b. %d, %Y") }}</p>
+      </a>
+    {% endfor %}
+</div>
+{% endblock %}
